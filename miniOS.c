@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
+#include <stdio.h> /* Standard I/O functions */
+#include <stdlib.h> /* Standard library functions */
+#include <string.h> /* String handling functions */
+#include <time.h> /* Time functions */
 
 void createFile();
 void writeFile();
@@ -11,6 +11,8 @@ void renameFile();
 void copyFile();
 void showDateTime();
 void calculator();
+void clearInputBuffer();
+void about();
 
 int main() {
     int choice;
@@ -24,7 +26,8 @@ int main() {
         printf("6. Copy File\n");
         printf("7. Show Date & Time\n");
         printf("8. Calculator\n");
-        printf("9. Exit\n");
+        printf("9. About MINI OS\n");
+        printf("10. Exit\n");
         printf("===========================================\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -37,7 +40,8 @@ int main() {
             case 6: copyFile(); break;
             case 7: showDateTime(); break;
             case 8: calculator(); break;
-            case 9:
+            case 9: about(); break;
+            case 10:
             printf("Exiting MINI OS. Goodbye!\n");
             exit(0);
         default:
@@ -187,4 +191,12 @@ void calculator() {
     default:
         printf("Invalid choice!\n");
     }
+}
+
+
+void about() {
+    printf("\nMINI OPERATING SYSTEM\n");
+    printf("Version: 1.0\n");
+    printf("Developed by: Samar\n");
+    printf("This is a simple mini operating system simulation in C.\n");
 }
