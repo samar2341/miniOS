@@ -22,7 +22,7 @@ void about();
 int main() {
     int choice;
     while (1) {
-        printf("\n========== MINI OPERATING SYSTEM ==========\n");
+        printf("\n========== lexOS -  your lexical OS ==========\n");
         printf("1. Create File\n");
         printf("2. Write to File\n");
         printf("3. Read File\n");
@@ -31,8 +31,8 @@ int main() {
         printf("6. Copy File\n");
         printf("7. Show Date & Time\n");
         printf("8. Calculator\n");
-        printf("9. About MINI OS\n");
-        printf("10. File Info\n");
+        printf("9. File Size\n");
+        printf("10. About lexOS\n");
         printf("11. Exit\n");
         printf("===========================================\n");
         printf("Enter your choice: ");
@@ -46,10 +46,10 @@ int main() {
             case 6: copyFile(); break;
             case 7: showDateTime(); break;
             case 8: calculator(); break;
-            case 9: about(); break;
-            case 10: fileInfo(); break;
+            case 9: fileInfo(); break;
+            case 10: about(); break;
             case 11:
-            printf("Exiting MINI OS. Goodbye!\n");
+            printf("Exiting lexOS. Goodbye!\n");
             exit(0);
         default:
             printf("Invalid choice! Please try again.\n");
@@ -231,7 +231,7 @@ void fileInfo() {
 }
 
 void about() {
-    printf("\nMINI OPERATING SYSTEM\n");
+    printf("\nlexOS - Your Lexical Operating System\n");
     printf("Version: 1.0\n");
     printf("Developed by: Samar\n");
     printf("This is a simple mini operating system simulation in C.\n");
