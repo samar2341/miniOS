@@ -58,7 +58,7 @@ void createFile() {
         printf("File creation failed!\n");
     } else {
         printf("File created successfully!\n");
-    fclose(fp);
+        fclose(fp);
     }
 }
 
