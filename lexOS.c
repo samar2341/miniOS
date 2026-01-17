@@ -5,6 +5,7 @@
 #include <windows.h> /* For _sleep function */
 
 
+void intro();
 void sleep(int milliseconds);
 void createFile();
 void writeFile();
@@ -21,6 +22,7 @@ void about();
 
 int main() {
     int choice;
+    intro();
     while (1) {
         printf("\n========== lexOS -  your lexical OS ==========\n");
         printf("1. Create File\n");
@@ -56,6 +58,25 @@ int main() {
         }
     }
     return 0;
+}
+
+void intro() {
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("$$\\       $$$$$$$$\\ $$\\   $$\\        $$$$$$\\   $$$$$$\\  \n");
+    printf("$$ |      $$  _____|$$ |  $$ |      $$  __$$\\ $$  __$$\\ \n");
+    printf("$$ |      $$ |      \\$$\\ $$  |      $$ /  $$ |$$ /  \\__|\n");
+    printf("$$ |      $$$$$\\     \\$$$$  /       $$ |  $$ |\\$$$$$$\\  \n");
+    printf("$$ |      $$  __|    $$  $$<        $$ |  $$ | \\____$$\\ \n");
+    printf("$$ |      $$ |      $$  /\\$$\\       $$ |  $$ |$$\\   $$ |\n");
+    printf("$$$$$$$$\\ $$$$$$$$\\ $$ /  $$ |       $$$$$$  |\\$$$$$$  |\n");
+    printf("\\________|\\________|\\__|  \\__|       \\______/  \\______/ \n");
+    printf("\n");
+    printf("\n");
+    printf("Welcome to lexOS - Your Lexical Operating System!\n"); 
+    sleep(5000); /* Pause for 2 seconds */
 }
 
 void sleep(int milliseconds) {
