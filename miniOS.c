@@ -2,7 +2,10 @@
 #include <stdlib.h> /* Standard library functions */
 #include <string.h> /* String handling functions */
 #include <time.h> /* Time functions */
+#include <windows.h> /* For _sleep function */
 
+
+void sleep(int milliseconds);
 void createFile();
 void writeFile();
 void readFile();
@@ -12,7 +15,9 @@ void copyFile();
 void showDateTime();
 void calculator();
 void clearInputBuffer();
+void fileInfo();
 void about();
+
 
 int main() {
     int choice;
@@ -27,7 +32,8 @@ int main() {
         printf("7. Show Date & Time\n");
         printf("8. Calculator\n");
         printf("9. About MINI OS\n");
-        printf("10. Exit\n");
+        printf("10. File Info\n");
+        printf("11. Exit\n");
         printf("===========================================\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -41,7 +47,8 @@ int main() {
             case 7: showDateTime(); break;
             case 8: calculator(); break;
             case 9: about(); break;
-            case 10:
+            case 10: fileInfo(); break;
+            case 11:
             printf("Exiting MINI OS. Goodbye!\n");
             exit(0);
         default:
@@ -49,6 +56,10 @@ int main() {
         }
     }
     return 0;
+}
+
+void sleep(int milliseconds) {
+    Sleep(milliseconds); /* Windows-specific sleep function */
 }
 
 /* Create File */
@@ -64,6 +75,7 @@ void createFile() {
         printf("File created successfully!\n");
         fclose(fp); /* Close the file pointer */
     }
+    sleep(2000); /* Pause for a second */
 }
 
 
@@ -89,6 +101,7 @@ void writeFile() {
     }
     fclose(fp); /* Close the file pointer */
     printf("Data written successfully!\n");
+    sleep(2000); /* Pause for a second */
 }
 
 
@@ -109,6 +122,7 @@ void readFile() {
     }
     fclose(fp); /* Close the file pointer */
     printf("\n--- End of File ---\n");
+    sleep(2000); /* Pause for a second */
 }
 
 /* Delete File */
@@ -121,6 +135,7 @@ void deleteFile() {
     } else {
         printf("Unable to delete file!\n");
     }
+    sleep(2000); /* Pause for a second */
 }
 
 
@@ -136,6 +151,7 @@ void renameFile() {
     } else {
         printf("Rename failed!\n");
     }
+    sleep(2000); /* Pause for a second */
 }
 
 /* Copy File */
@@ -158,6 +174,7 @@ void copyFile() {
     fclose(src); /* Close the source file pointer */
     fclose(dest); /* Close the destination file pointer */
     printf("File copied successfully!\n");
+    sleep(2000); /* Pause for a second */
 }
 
 /* Date & Time */
@@ -165,6 +182,7 @@ void showDateTime() {
     time_t t; /* time variable */
     time(&t); /* Get current time */
     printf("Current Date & Time: %s", ctime(&t)); /* Display date and time */
+    sleep(2000); /* Pause for a second */
 }
 
 /* Calculator */
@@ -191,12 +209,31 @@ void calculator() {
     default:
         printf("Invalid choice!\n");
     }
+    sleep(2000); /* Pause for a second */
 }
 
+void fileInfo() {
+    char filename[50];
+    FILE *fp;
+    long size;
+    printf("Enter file name: ");
+    scanf("%s", filename);
+    fp = fopen(filename, "r");
+    if (fp == NULL) {
+        printf("File not found!\n");
+        return;
+    }
+    fseek(fp, 0, SEEK_END); /* Move to end of file */
+    size = ftell(fp); /* Get current position */
+    fclose(fp); /* Close the file pointer */
+    printf("File Size: %ld bytes\n", size);
+    sleep(2000); /* Pause for a second */
+}
 
 void about() {
     printf("\nMINI OPERATING SYSTEM\n");
     printf("Version: 1.0\n");
     printf("Developed by: Samar\n");
     printf("This is a simple mini operating system simulation in C.\n");
+    sleep(2000); /* Pause for a second */
 }
