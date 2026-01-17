@@ -38,10 +38,10 @@ int main() {
             case 7: showDateTime(); break;
             case 8: calculator(); break;
             case 9:
-            printf("Exiting Mini OS...\n");
+            printf("Exiting MINI OS. Goodbye!\n");
             exit(0);
         default:
-            printf("Invalid choice! Try again.\n");
+            printf("Invalid choice! Please try again.\n");
         }
     }
     return 0;
@@ -49,39 +49,41 @@ int main() {
 
 /* Create File */
 void createFile() {
-    FILE *fp;  
-    char filename[50];
+    FILE *fp; /* File pointer */
+    char filename[50]; 
     printf("Enter file name: ");
     scanf("%s", filename);
-    fp = fopen(filename, "w");
+    fp = fopen(filename, "w");/* Open file in write mode */
     if (fp == NULL) {
         printf("File creation failed!\n");
     } else {
         printf("File created successfully!\n");
-        fclose(fp);
+        fclose(fp); /* Close the file pointer */
     }
 }
 
 
 /* Write to File */
 void writeFile() {
-    FILE *fp;
+    FILE *fp; /* File pointer */
     char filename[50], data[200];
     printf("Enter file name: ");
     scanf("%s", filename);
-    fp = fopen(filename, "a");
+    fp = fopen(filename, "a");/* Open file in append mode */
     if (fp == NULL) {
         printf("Unable to open file!\n");
         return;
     }
     printf("Enter data (end with #):\n");
-    getchar(); // clear buffer
+    getchar(); // Clear newline character from buffer
     while (1) {
-    fgets(data, 200, stdin);
-    if (strchr(data, '#')) break;
-    fputs(data, fp);
+        fgets(data, 200, stdin); /* Read input line */
+        if (strchr(data, '#')) {/* Check for end marker */
+            break;
+        }
+        fputs(data, fp); /* Write data to file */
     }
-    fclose(fp);
+    fclose(fp); /* Close the file pointer */
     printf("Data written successfully!\n");
 }
 
@@ -92,16 +94,17 @@ void readFile() {
     char filename[50], ch;
     printf("Enter file name: ");
     scanf("%s", filename);
-    fp = fopen(filename, "r");
+    fp = fopen(filename, "r"); /* Open file in read mode */
     if (fp == NULL) {
         printf("File not found!\n");
     return;
     }
     printf("\n--- File Content ---\n");
-    while ((ch = fgetc(fp)) != EOF) {
-    putchar(ch);
+    while ((ch = fgetc(fp)) != EOF) { /* Read character by character */
+        putchar(ch); /* Display character */
     }
-    fclose(fp);
+    fclose(fp); /* Close the file pointer */
+    printf("\n--- End of File ---\n");
 }
 
 /* Delete File */
@@ -109,11 +112,14 @@ void deleteFile() {
     char filename[50];
     printf("Enter file name to delete: ");
     scanf("%s", filename);
-    if (remove(filename) == 0)
-    printf("File deleted successfully!\n");
-    else
-    printf("Unable to delete file!\n");
+    if (remove(filename) == 0){ /* Remove the file */
+        printf("File deleted successfully!\n");
+    } else {
+        printf("Unable to delete file!\n");
+    }
 }
+
+
 /* Rename File */
 void renameFile() {
     char oldname[50], newname[50];
@@ -121,38 +127,40 @@ void renameFile() {
     scanf("%s", oldname);
     printf("Enter new file name: ");
     scanf("%s", newname);
-    if (rename(oldname, newname) == 0)
-    printf("File renamed successfully!\n");
-    printf("Rename failed!\n");
+    if (rename(oldname, newname) == 0){ /* Rename the file */
+        printf("File renamed successfully!\n");
+    } else {
+        printf("Rename failed!\n");
+    }
 }
+
 /* Copy File */
 void copyFile() {
-    FILE *src, *dest;
+    FILE *src, *dest; /* File pointers */
     char source[50], target[50], ch;
     printf("Enter source file: ");
     scanf("%s", source);
     printf("Enter target file: ");
     scanf("%s", target);
-    src = fopen(source, "r");
-    dest = fopen(target, "w");
+    src = fopen(source, "r"); /* Open source file in read mode */
+    dest = fopen(target, "w"); /* Open target file in write mode */
     if (src == NULL || dest == NULL) {
-    printf("File error!\n");
-    return;
+        printf("File error!\n");
+        return;
     }
-
-    while ((ch = fgetc(src)) != EOF) {
-        fputc(ch, dest);
+    while ((ch = fgetc(src)) != EOF) { /* Copy content */
+        fputc(ch, dest); /* Write to target file */
     }
-    fclose(src);
-    fclose(dest);
+    fclose(src); /* Close the source file pointer */
+    fclose(dest); /* Close the destination file pointer */
     printf("File copied successfully!\n");
 }
 
 /* Date & Time */
 void showDateTime() {
-    time_t t;
-    time(&t);
-    printf("Current Date & Time: %s", ctime(&t));
+    time_t t; /* time variable */
+    time(&t); /* Get current time */
+    printf("Current Date & Time: %s", ctime(&t)); /* Display date and time */
 }
 
 /* Calculator */
@@ -165,15 +173,18 @@ void calculator() {
     printf("Enter two numbers: ");
     scanf("%d%d", &a, &b);
     switch (ch) {
-    case 1: printf("Result = %d\n", a + b); break;
-    case 2: printf("Result = %d\n", a - b); break;
-    case 3: printf("Result = %d\n", a * b); break;
-    case 4:
-    if (b != 0) printf("Result = %d\n", a / b);
-    else
-    printf("Division by zero not allowed!\n");
-    break;
+        case 1: printf("Result = %d\n", a + b); break;
+        case 2: printf("Result = %d\n", a - b); break;
+        case 3: printf("Result = %d\n", a * b); break;
+        case 4:
+        if (b != 0){
+            printf("Result = %.2f\n", (float)a / b);
+        } 
+        else{
+            printf("Division by zero not allowed!\n");
+        }
+        break;
     default:
-    printf("Invalid option!\n");
+        printf("Invalid choice!\n");
     }
 }
